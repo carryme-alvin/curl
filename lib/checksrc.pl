@@ -101,7 +101,11 @@ sub readwhitelist {
 sub readlocalfile {
     my $i = 0;
 
+    print STDERR "CHECKSRC: try $dir/.checksrc\n";
+
     open(my $rcfile, "<", "$dir/.checksrc") or return;
+
+    print STDERR "CHECKSRC: opened $dir/.checksrc\n";
 
     while(<$rcfile>) {
         $i++;
@@ -123,6 +127,7 @@ sub readlocalfile {
                 next;
             }
             # Accept-list
+            print STDERR "CHECKSRC: disables $1\n";
             push @alist, $1;
         }
         else {
